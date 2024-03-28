@@ -9,21 +9,27 @@ def main():
     print_board(board)
 
     # Game loop
+    current_player_index = 0
     while True:
-        for player in players:
-            # Get the player's move
-            move = get_move(player)
+        # Get the current player
+        player = players[current_player_index]
 
-            # Update the game board
-            board[move] = player
+        # Get the player's move
+        move = get_move(player)
 
-            # Print the updated game board
-            print_board(board)
+        # Update the game board
+        board[move] = player
 
-            # Check if the current player has won
-            if check_win(board, player):
-                print(f"Player {player} wins!")
-                return
+        # Print the updated game board
+        print_board(board)
+
+        # Check if the current player has won
+        if check_win(board, player):
+            print(f"Player {player} wins!")
+            return
+
+        # Switch to the other player
+        current_player_index = (current_player_index + 1) % 2
 
 if __name__ == "__main__":
     main()
